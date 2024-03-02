@@ -3,10 +3,7 @@ name = "esp32-test"
 version = "0.1.0"
 authors = ["cofob <cofob@riseup.net>"]
 edition = "2021"
-license = "MIT OR Apache-2.0"
-
-[profile.release]
-debug = true
+license = "MIT"
 
 [dependencies]
 esp32-hal = "0.18.0"
@@ -18,6 +15,13 @@ esp-backtrace = { version = "0.11.0", features = [
 ] }
 esp-println = { version = "0.9.0", features = ["esp32"] }
 
-
 [features]
 default = ["esp32-hal/xtal-40mhz"]
+
+[profile.release]
+overflow-checks = true
+incremental = false
+codegen-units = 1
+opt-level = 3
+debug = "full"
+strip = true
